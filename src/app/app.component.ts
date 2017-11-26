@@ -11,6 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import firebase from 'firebase';
 import { AngularFireModule } from "angularfire2";
 import { JobListPage } from '../pages/job-list/job-list';
+import { MapPage } from '../pages/map/map';
 
 
 export const config = {
@@ -28,7 +29,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = JobListPage;
+  rootPage = PostJobsPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -43,7 +44,8 @@ export class MyApp {
     // set our app's pages
     this.pages = [
       { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: PostJobsPage }
+      { title: 'My First List', component: PostJobsPage },
+      { title: 'Map', component: MapPage }
     ];
   }
 

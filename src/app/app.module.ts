@@ -15,7 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 @NgModule({
   declarations: [
     MyApp,
@@ -45,6 +45,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     SplashScreen,
     GoogleMaps,
     Geolocation,
+    NativeGeocoder,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     DateValidatorProvider
   ]

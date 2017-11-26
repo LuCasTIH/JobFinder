@@ -7,7 +7,8 @@ import {
   GoogleMapOptions,
   CameraPosition,
   MarkerOptions,
-  Marker
+  Marker,
+  LatLng
 } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -16,65 +17,48 @@ import { Geolocation } from '@ionic-native/geolocation';
   templateUrl: 'map.html',
 })
 export class MapPage {
-  map: GoogleMap;
-  location = {
-    lat: '',
-    lng: ''
-  };
+
   constructor(private googleMaps: GoogleMaps, private geolocation: Geolocation) { }
 
   ionViewDidLoad() {
     this.loadMap();
   }
 
-  GetCurrentPosition(){
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.location.lat= resp.coords.latitude.toString(),
-      this.location.lng=resp.coords.latitude.toString()
-     }).catch((error) => {
-       console.log('Error getting location', error);
-     });
-  }
-
-
   loadMap() {
-    
-    this.GetCurrentPosition();
-    let mapOptions: GoogleMapOptions = {
-      camera: {
-        target: {
-          lat: this.location.lat,
-          lng: this.location.lng
-        },
-        zoom: 18,
-        tilt: 30
-      }
-    };
-
-    this.map = this.googleMaps.create('map_canvas', mapOptions);
-
-    // Wait the MAP_READY before using any methods.
-    this.map.one(GoogleMapsEvent.MAP_READY)
-      .then(() => {
-        console.log('Map is ready!');
-
-        // Now you can use all methods safely.
-        this.map.addMarker({
-          title: 'Ionic',
-          icon: 'blue',
-          animation: 'DROP',
-          position: {
-            lat: 43.0741904,
-            lng: -89.3809802
-          }
-        })
-          .then(marker => {
-            marker.on(GoogleMapsEvent.MARKER_CLICK)
-              .subscribe(() => {
-                alert('clicked');
+    let element = document.getElementById('map');
+    let map: GoogleMap = this.googleMaps.create(element, {});
+    let locationOptions = { timeout: 10000, enableHighAccuracy: true };
+    this.geolocation.getCurrentPosition(locationOptions).then(resp => {
+      let latlng = new LatLng(resp.coords.latitude, resp.coords.longitude);
+      console.log(latlng);
+      let mapOptions: GoogleMapOptions = {
+        camera: {
+          target:latlng,
+          zoom: 18,
+          tilt: 30,
+        }
+      };
+      map = this.googleMaps.create('map_canvas', mapOptions);
+      map.one(GoogleMapsEvent.MAP_READY).then(() => {
+        
+                // let position: CameraPosition<any> = {
+                //   target: latlng,
+                //   zoom: 18,
+                //   tilt: 30
+                // };
+                // map.moveCamera(position);
+        
+                let usermarker: MarkerOptions = {
+                  position: latlng,
+                  title: 'Vị trí của bạn',
+                };
+                map.addMarker(usermarker).then((marker: Marker) => {
+                  marker.showInfoWindow();
+                });
               });
-          });
-
-      });
+            });
   }
 }
+
+
+

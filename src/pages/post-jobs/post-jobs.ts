@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
+import { NativeGeocoder, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import firebase from 'firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateValidatorProvider } from '../../providers/date-validator/date-validator';
@@ -13,7 +14,7 @@ export class PostJobsPage {
   jobs = [];
   postJobForm: FormGroup;
   m: any;
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public formBuilder: FormBuilder, private nativeGeocoder: NativeGeocoder) {
     this.postJobForm = formBuilder.group({
       title: ['', Validators.compose([Validators.required])],
       kindofjob: ['', Validators.compose([Validators.required])],
@@ -43,24 +44,35 @@ export class PostJobsPage {
       message: 'Đăng thành công!',
       buttons: ['Ok']
     });
-    if (!this.postJobForm.valid){
+    if (!this.postJobForm.valid) {
       console.log("Nice try!");
     } else {
-    var job = {
-      title: this.postJobForm.value.title,
-      kindofjob: this.postJobForm.value.kindofjob,
-      amount: this.postJobForm.value.amount,
-      address: this.postJobForm.value.address,
-      salary: this.postJobForm.value.salary,
-      form: this.postJobForm.value.form,
-      endate: this.postJobForm.value.endate,
-      description: this.postJobForm.value.description
-    };
-    firebase.database().ref('/PostedJobs').push(job).then(() => {
-      succedAlert.present();
-      this.postJobForm.reset();
-    });
-  }
+      this.nativeGeocoder.forwardGeocode(this.postJobForm.value.address)
+        .then((coordinates: NativeGeocoderForwardResult) => {
+          if (!coordinates) {
+            alert("Không lấy được tọa độ!")
+          }
+          console.log(coordinates);
+          var job = {
+            title: this.postJobForm.value.title,
+            kindofjob: this.postJobForm.value.kindofjob,
+            amount: this.postJobForm.value.amount,
+            address: this.postJobForm.value.address,
+            salary: this.postJobForm.value.salary,
+            form: this.postJobForm.value.form,
+            endate: this.postJobForm.value.endate,
+            description: this.postJobForm.value.description,
+            lat: coordinates.latitude,
+            lng: coordinates.longitude
+          };
+
+          firebase.database().ref('/PostedJobs').push(job).then(() => {
+            succedAlert.present();
+            this.postJobForm.reset();
+          });
+        })
+        .catch((error: any) => console.log(error));
+    }
   }
 
 
