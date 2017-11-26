@@ -7,11 +7,14 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { PostJobsPage } from '../pages/post-jobs/post-jobs';
+import { DateValidatorProvider } from '../providers/date-validator/date-validator';
+import { JobListPage } from '../pages/job-list/job-list';
+import { MapPage } from '../pages/map/map';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { DateValidatorProvider } from '../providers/date-validator/date-validator';
-import { JobListPage } from '../pages/job-list/job-list';
+import { GoogleMaps } from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { JobListPage } from '../pages/job-list/job-list';
     ItemDetailsPage,
     ListPage,
     PostJobsPage,
-    JobListPage
+    JobListPage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -33,13 +37,16 @@ import { JobListPage } from '../pages/job-list/job-list';
     ItemDetailsPage,
     ListPage,
     PostJobsPage,
-    JobListPage
+    JobListPage,
+    MapPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GoogleMaps,
+    Geolocation,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     DateValidatorProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

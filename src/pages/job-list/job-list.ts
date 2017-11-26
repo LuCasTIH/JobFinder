@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
 import { ItemDetailsPage } from '../item-details/item-details';
+import { MapPage } from '../map/map';
 
 @Component({
   selector: 'page-job-list',
@@ -108,6 +109,10 @@ export class JobListPage {
 
   GoToDetail(key){
     this.navCtrl.push(ItemDetailsPage, {param: key});
+  }
+
+  GoToMap(){
+    this.navCtrl.push(MapPage);
   }
 
 }
