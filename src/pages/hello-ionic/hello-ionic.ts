@@ -5,7 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: 'hello-ionic.html'
 })
 export class HelloIonicPage {
+
+  myDate: String = new Date().toISOString();
   constructor() {
 
+    console.log(this.myDate);
   }
+
+  
+
 }
