@@ -7,8 +7,20 @@
 <ion-header>
 
   <ion-navbar color="primary">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-10>
+          <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+        </ion-col>
+        
+        <ion-col>
+            <button ion-button icon-only end>
+                <ion-icon name="map"></ion-icon>
+              </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   </ion-navbar>
 
 </ion-header>

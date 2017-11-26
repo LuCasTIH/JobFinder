@@ -16,7 +16,7 @@ export class JobListPage {
     this.LoadAllJob();
   }
 
-  ionViewDidLoad(kindofjob) {
+  ionViewDidLoad() {
     firebase.database().ref('/Jobs').once('value', (snapshot) => {
       snapshot.forEach((childsnapshot) => {
         this.kindOfJob.push(childsnapshot.val().name);
