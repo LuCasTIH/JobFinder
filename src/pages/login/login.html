@@ -1,0 +1,37 @@
+
+<ion-content padding class="background" scroll="false">
+  <form [formGroup]="loginForm" (submit)="Login()" novalidate>
+
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input #email formControlName="email" type="email" [class.invalid]="!loginForm.controls.email.valid &&
+              loginForm.controls.email.dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid  &&
+          loginForm.controls.email.dirty">
+      <p style="color:red">Vui lòng nhập email hợp lệ</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Mật khẩu</ion-label>
+      <ion-input #password formControlName="password" type="password" [class.invalid]="!loginForm.controls.password.valid &&
+              loginForm.controls.password.dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  &&
+          loginForm.controls.password.dirty">
+      <p style="color:red">Mật khẩu cần ít nhất 6 kí tự.</p>
+    </ion-item>
+
+    <div id="space">
+      <button ion-button block type="submit"> Đăng nhập </button>
+    </div>
+  </form>
+
+  <button ion-button block clear (click)="GoToResetPassword()">
+    Quên mật khẩu
+  </button>
+
+  <button ion-button block (click)="GoToSignUp()">
+    Đăng ký tài khoản mới
+  </button>
+</ion-content>

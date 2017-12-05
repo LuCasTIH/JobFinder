@@ -1,0 +1,29 @@
+page-login {
+    form {
+        margin-bottom: 32px;
+        padding-top: 100px;
+        button {
+          margin-top: 20px;
+        }
+      }
+
+      .invalid {
+        border-bottom: 1px solid #FF6153;
+      }
+    
+      .error-message .item-inner {
+        border-bottom: 0 !important;
+        
+      }
+
+
+    /*  ion-content {
+        background-image: url('/assets/images/LoginPageBG.jpg');
+        background-size: cover;
+        background-position: center;
+        margin: auto;
+        z-index: 2;
+        
+    }*/
+
+}

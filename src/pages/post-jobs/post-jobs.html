@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Đăng tuyển</ion-title>
   </ion-navbar>
 
@@ -31,16 +31,30 @@
     </ion-item>
 
     <ion-item>
-      <ion-label stacked> Số lượng </ion-label>
-      <ion-input type="number" formControlName="amount">
-        [class.invalid]="!postJobForm.controls.amount.dirty">
+      <ion-label stacked> Tên công ty / Nơi làm việc </ion-label>
+      <ion-input type="text" formControlName="companyname">
+        [class.invalid]="!postJobForm.controls.companyname.dirty">
       </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label stacked> Nơi làm việc </ion-label>
+      <ion-label stacked>Địa chỉ nhận CV / Địa chỉ nơi làm </ion-label>
       <ion-input type="text" formControlName="address">
         [class.invalid]="!postJobForm.controls.address.dirty">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label stacked> Mô tả </ion-label>
+        <ion-textarea formControlName="description" name="description">
+            [class.invalid]="!postJobForm.controls.description.dirty">
+        </ion-textarea>
+      </ion-item>
+
+    <ion-item>
+      <ion-label stacked> Số lượng </ion-label>
+      <ion-input type="number" formControlName="amount">
+        [class.invalid]="!postJobForm.controls.amount.dirty">
       </ion-input>
     </ion-item>
 
@@ -70,7 +84,7 @@
     </ion-grid>
 
     <ion-item>
-      <ion-label floating>Ngày kết thúc</ion-label>
+      <ion-label floating>Ngày kết thúc tuyển người</ion-label>
       <ion-datetime displayFormat="MM/DD/YYYY" formControlName="endate">
         [class.invalid]="!addSongForm.controls.endate.valid && addSongForm.controls.endate.dirty">
       </ion-datetime>
@@ -81,12 +95,6 @@
       Ngày kết thúc không được nhỏ hơn bây giờ!
     </p>
   </ion-item>
-    <ion-item>
-      <ion-label stacked> Mô tả </ion-label>
-      <ion-textarea formControlName="description" name="description">
-          [class.invalid]="!postJobForm.controls.description.dirty">
-      </ion-textarea>
-    </ion-item>
 
     <button ion-button block type="submit" [disabled]="!postJobForm.valid">
         Đăng

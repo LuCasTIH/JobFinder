@@ -9,7 +9,7 @@ export class DateValidatorProvider {
     let datenow = new Date().toISOString();
     if (control.value >= datenow) { return null; }
 
-    return { "notOldEnough": true };
+    return { "inValid": true };
 
   }
 

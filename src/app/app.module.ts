@@ -3,9 +3,6 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { ItemDetailsPage } from '../pages/item-details/item-details';
-import { ListPage } from '../pages/list/list';
 import { PostJobsPage } from '../pages/post-jobs/post-jobs';
 import { DateValidatorProvider } from '../providers/date-validator/date-validator';
 import { JobListPage } from '../pages/job-list/job-list';
@@ -16,29 +13,68 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { SignupPage } from '../pages/signup/signup';
+import { LoginPage } from '../pages/login/login';
+import { TabsPage } from '../pages/tabs/tabs';
+import { AuthProvider } from '../providers/auth';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { JobDetailsPage } from '../pages/job-details/job-details';
+import { SignupWithPhoneNumberPage } from '../pages/signup-with-phone-number/signup-with-phone-number';
+import { SignupWithEmailPage } from '../pages/signup-with-email/signup-with-email';
+import { UserProfilePage } from '../pages/user-profile/user-profile';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+
+export const config ={
+  apiKey: "AIzaSyATI7EYKRY3fQYCKiX38x7kZqi6T6F3Yyg",
+  authDomain: "jobfinder-36e68.firebaseapp.com",
+  databaseURL: "https://jobfinder-36e68.firebaseio.com",
+  projectId: "jobfinder-36e68",
+  storageBucket: "jobfinder-36e68.appspot.com",
+  messagingSenderId: "312193015035"
+};
+
 @NgModule({
   declarations: [
     MyApp,
-    HelloIonicPage,
-    ItemDetailsPage,
-    ListPage,
     PostJobsPage,
     JobListPage,
-    MapPage
+    MapPage,
+    LoginPage,
+    SignupPage,
+    LoginPage,
+    SignupPage,
+    TabsPage,
+    JobDetailsPage,
+    SignupWithPhoneNumberPage,
+    SignupWithEmailPage,
+    UserProfilePage,
+    EditProfilePage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(config),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HelloIonicPage,
-    ItemDetailsPage,
-    ListPage,
     PostJobsPage,
     JobListPage,
-    MapPage
+    MapPage,
+    LoginPage,
+    SignupPage,
+    TabsPage,
+    LoginPage,
+    SignupPage,
+    TabsPage,
+    JobDetailsPage,
+    SignupWithPhoneNumberPage,
+    SignupWithEmailPage,
+    UserProfilePage,
+    EditProfilePage
+    
   ],
   providers: [
     StatusBar,
@@ -47,7 +83,8 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
     Geolocation,
     NativeGeocoder,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    DateValidatorProvider
+    DateValidatorProvider,
+    AuthProvider
   ]
 })
 export class AppModule { }

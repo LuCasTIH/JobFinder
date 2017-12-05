@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
-import { ItemDetailsPage } from '../item-details/item-details';
 import { MapPage } from '../map/map';
+import { JobDetailsPage } from '../job-details/job-details';
+import { AuthProvider } from '../../providers/auth';
 
 @Component({
   selector: 'page-job-list',
@@ -13,9 +14,14 @@ export class JobListPage {
   public jobList = [];
   public loadedJobsList = [];
   kindOfJob = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.LoadAllJob();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider) {
+
   }
+
+  logOut(){
+    this.auth.logoutUser();
+    console.log("thoat");
+}
 
   ionViewDidLoad() {
     firebase.database().ref('/Jobs').once('value', (snapshot) => {
@@ -24,6 +30,7 @@ export class JobListPage {
         return false;
       });
     });
+    this.LoadAllJob();
   }
 
   LoadAllJob() {
@@ -48,7 +55,7 @@ export class JobListPage {
     });
   }
 
-  LoadJobByKind(value){
+  LoadJobByKind(value) {
     firebase.database().ref('/PostedJobs').on('value', snapshot => {
       let jobs = [];
       snapshot.forEach(childsnapshot => {
@@ -89,14 +96,13 @@ export class JobListPage {
   }
 
   getItems(searchbar) {
-    // Reset items back to all of the items
     this.initializeItems();
-    // set q to the value of the searchbar
+
     var q = searchbar.srcElement.value;
-    // if the value is an empty string don't filter the items
     if (!q) {
       return;
     }
+
     this.jobList = this.jobList.filter((v) => {
       if (v.title && q) {
         if (v.title.toLowerCase().indexOf(q.toLowerCase()) > -1) {
@@ -107,11 +113,11 @@ export class JobListPage {
     });
   }
 
-  GoToDetail(key){
-    this.navCtrl.push(ItemDetailsPage, {param: key});
+  GoToDetail(key) {
+    this.navCtrl.push(JobDetailsPage, { param: key });
   }
 
-  GoToMap(){
+  GoToMap() {
     this.navCtrl.push(MapPage);
   }
 

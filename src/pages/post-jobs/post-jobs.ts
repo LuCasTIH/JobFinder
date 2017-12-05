@@ -23,7 +23,8 @@ export class PostJobsPage {
       salary: ['', Validators.compose([Validators.required])],
       form: ['', Validators.compose([Validators.required])],
       endate: ['', Validators.compose([Validators.required, DateValidatorProvider.isValid])],
-      description: ['', Validators.compose([Validators.required])]
+      description: ['', Validators.compose([Validators.required])],
+      companyname: ['', Validators.compose([Validators.required])]
     });
     this.m = new Date().toISOString();
 
@@ -52,7 +53,6 @@ export class PostJobsPage {
           if (!coordinates) {
             alert("Không lấy được tọa độ!")
           }
-          console.log(coordinates);
           var job = {
             title: this.postJobForm.value.title,
             kindofjob: this.postJobForm.value.kindofjob,
@@ -62,6 +62,7 @@ export class PostJobsPage {
             form: this.postJobForm.value.form,
             endate: this.postJobForm.value.endate,
             description: this.postJobForm.value.description,
+            companyname: this.postJobForm.value.companyname,
             lat: coordinates.latitude,
             lng: coordinates.longitude
           };
