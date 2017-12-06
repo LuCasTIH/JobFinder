@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 // import firebase from 'firebase';
-import { AngularFireModule } from "angularfire2";
+// import { AngularFireModule } from "angularfire2";
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { LoginPage } from '../pages/login/login';

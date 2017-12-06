@@ -26,7 +26,7 @@
       </ion-item>
   
       <ion-item>
-        <ion-label stacked>Password</ion-label>
+        <ion-label stacked>Mật khẩu</ion-label>
         <ion-input formControlName="password" type="password" placeholder="Mật khẩu của bạn" [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty"></ion-input>
       </ion-item>
       <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid  && signupForm.controls.password.dirty">

@@ -12,7 +12,7 @@ import { AuthProvider } from '../../providers/auth';
 
 import { EmailValidator } from '../../providers/email';
 // import { LoginPage } from '../login/login';
-import { EditProfilePage } from '../edit-profile/edit-profile';
+import { LoginPage } from '../login/login';
 
 
 @Component({
@@ -40,7 +40,7 @@ export class SignupWithEmailPage {
     } else {
       this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password)
         .then(() => {
-          this.app.getRootNav().setRoot(EditProfilePage);
+          this.app.getRootNav().setRoot(LoginPage);
         }, (error) => {
           this.loading.dismiss().then(() => {
             var errorMessage: string = error.message;

@@ -3,27 +3,28 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { PostJobsPage } from '../pages/post-jobs/post-jobs';
-import { DateValidatorProvider } from '../providers/date-validator/date-validator';
-import { JobListPage } from '../pages/job-list/job-list';
-import { MapPage } from '../pages/map/map';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
-import { SignupPage } from '../pages/signup/signup';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AuthProvider } from '../providers/auth';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
 import { JobDetailsPage } from '../pages/job-details/job-details';
 import { SignupWithPhoneNumberPage } from '../pages/signup-with-phone-number/signup-with-phone-number';
 import { SignupWithEmailPage } from '../pages/signup-with-email/signup-with-email';
 import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { PostJobsPage } from '../pages/post-jobs/post-jobs';
+import { DateValidatorProvider } from '../providers/date-validator/date-validator';
+import { JobListPage } from '../pages/job-list/job-list';
+import { MapPage } from '../pages/map/map';
+import { HistoryPage } from '../pages/history/history';
+import { EditPostedJobPage } from '../pages/edit-posted-job/edit-posted-job';
 
 export const config ={
   apiKey: "AIzaSyATI7EYKRY3fQYCKiX38x7kZqi6T6F3Yyg",
@@ -41,15 +42,14 @@ export const config ={
     JobListPage,
     MapPage,
     LoginPage,
-    SignupPage,
-    LoginPage,
-    SignupPage,
     TabsPage,
     JobDetailsPage,
     SignupWithPhoneNumberPage,
     SignupWithEmailPage,
     UserProfilePage,
     EditProfilePage,
+    HistoryPage,
+    EditPostedJobPage
   ],
   imports: [
     BrowserModule,
@@ -63,17 +63,16 @@ export const config ={
     PostJobsPage,
     JobListPage,
     MapPage,
-    LoginPage,
-    SignupPage,
     TabsPage,
     LoginPage,
-    SignupPage,
     TabsPage,
     JobDetailsPage,
     SignupWithPhoneNumberPage,
     SignupWithEmailPage,
     UserProfilePage,
-    EditProfilePage
+    EditProfilePage,
+    HistoryPage,
+    EditPostedJobPage
     
   ],
   providers: [

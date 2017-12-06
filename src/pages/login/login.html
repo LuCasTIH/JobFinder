@@ -1,4 +1,3 @@
-
 <ion-content padding class="background" scroll="false">
   <form [formGroup]="loginForm" (submit)="Login()" novalidate>
 
@@ -27,11 +26,15 @@
     </div>
   </form>
 
+  <button ion-button block (click)="GoToSignupWithPhoneNumber()">
+    Đăng nhập bằng số điện thoại
+  </button>
+
   <button ion-button block clear (click)="GoToResetPassword()">
     Quên mật khẩu
   </button>
 
-  <button ion-button block (click)="GoToSignUp()">
+  <button ion-button block (click)="GoToSignup()">
     Đăng ký tài khoản mới
   </button>
 </ion-content>

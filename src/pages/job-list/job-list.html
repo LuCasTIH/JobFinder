@@ -40,7 +40,8 @@
       <ion-item  *ngFor="let joblist of jobList" (click)="GoToDetail(joblist.key)">
         <h2> <strong>{{ joblist.title }}</strong> </h2>
         <h4> {{ joblist.address }} </h4>
-        <h4 style="color:grey"> {{joblist.endate}}</h4>
+        <h3 style="color: red"> {{ joblist.kindofjob }} </h3>
+        <h4 style="color:grey">Ngày hết hạn: {{joblist.endate}}</h4>
       </ion-item>
     </ion-list>
 

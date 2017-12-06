@@ -31,10 +31,10 @@
     </ion-item>
 
     <ion-item>
-      <ion-label stacked> Tên công ty / Nơi làm việc </ion-label>
-      <ion-input type="text" formControlName="companyname">
-        [class.invalid]="!postJobForm.controls.companyname.dirty">
-      </ion-input>
+      <ion-label stacked> Yêu cầu </ion-label>
+      <ion-textarea formControlName="requirement" autosize>
+        [class.invalid]="!postJobForm.controls.requirement.dirty">
+      </ion-textarea>
     </ion-item>
 
     <ion-item>
@@ -45,11 +45,11 @@
     </ion-item>
 
     <ion-item>
-        <ion-label stacked> Mô tả </ion-label>
-        <ion-textarea formControlName="description" name="description">
-            [class.invalid]="!postJobForm.controls.description.dirty">
-        </ion-textarea>
-      </ion-item>
+      <ion-label stacked> Mô tả </ion-label>
+      <ion-textarea formControlName="description" autosize2>
+        [class.invalid]="!postJobForm.controls.description.dirty">
+      </ion-textarea>
+    </ion-item>
 
     <ion-item>
       <ion-label stacked> Số lượng </ion-label>
@@ -86,15 +86,14 @@
     <ion-item>
       <ion-label floating>Ngày kết thúc tuyển người</ion-label>
       <ion-datetime displayFormat="MM/DD/YYYY" formControlName="endate">
-        [class.invalid]="!addSongForm.controls.endate.valid && addSongForm.controls.endate.dirty">
+        [class.invalid]="!postJobForm.controls.endate.valid && postJobForm.controls.endate.dirty">
       </ion-datetime>
     </ion-item>
-    <ion-item class="error-message" 
-    *ngIf="!postJobForm.controls.endate.valid && postJobForm.controls.endate.dirty">
-    <p>
-      Ngày kết thúc không được nhỏ hơn bây giờ!
-    </p>
-  </ion-item>
+    <ion-item class="error-message" *ngIf="!postJobForm.controls.endate.valid && postJobForm.controls.endate.dirty">
+      <p>
+        Ngày kết thúc không được nhỏ hơn bây giờ!
+      </p>
+    </ion-item>
 
     <button ion-button block type="submit" [disabled]="!postJobForm.valid">
         Đăng

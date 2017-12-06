@@ -11,7 +11,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth';
 import { EmailValidator } from '../../providers/email';
 import { TabsPage } from '../tabs/tabs';
-import { SignupPage } from '../signup/signup';
+import { SignupWithEmailPage } from '../signup-with-email/signup-with-email';
+import { SignupWithPhoneNumberPage } from '../signup-with-phone-number/signup-with-phone-number';
 
 @Component({
   selector: 'page-login',
@@ -31,8 +32,12 @@ export class LoginPage {
     });
   }
 
-  GoToSignUp(){
-    this.navCtrl.push(SignupPage);
+  GoToSignupWithPhoneNumber(){
+    this.navCtrl.push(SignupWithPhoneNumberPage);
+  }
+
+  GoToSignup(){
+    this.navCtrl.push(SignupWithEmailPage);
   }
 
   Login() {

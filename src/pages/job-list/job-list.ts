@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import { MapPage } from '../map/map';
 import { JobDetailsPage } from '../job-details/job-details';
 import { AuthProvider } from '../../providers/auth';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-job-list',
@@ -18,10 +19,12 @@ export class JobListPage {
 
   }
 
-  logOut(){
+  logOut() {
     this.auth.logoutUser();
+    firebase.auth().signOut();
+    this.navCtrl.setRoot(LoginPage);
     console.log("thoat");
-}
+  }
 
   ionViewDidLoad() {
     firebase.database().ref('/Jobs').once('value', (snapshot) => {
@@ -37,17 +40,25 @@ export class JobListPage {
     firebase.database().ref('/PostedJobs').on('value', snapshot => {
       let jobs = [];
       snapshot.forEach(childsnapshot => {
-        jobs.push({
-          key: childsnapshot.key,
-          title: childsnapshot.val().title,
-          kindofjob: childsnapshot.val().kindofjob,
-          amount: childsnapshot.val().amount,
-          address: childsnapshot.val().address,
-          salary: childsnapshot.val().salary,
-          form: childsnapshot.val().form,
-          endate: childsnapshot.val().endate,
-          description: childsnapshot.val().description
-        });
+        let datenow = new Date().toISOString();
+        if (childsnapshot.val().endate >= datenow) {
+          var str = childsnapshot.val().endate;
+          var year = str.slice(0, 4);
+          var month = str.slice(5, 7);
+          var day = str.slice(8, 10);
+          var endatestr = day + "/" + month + "/" + year;
+          jobs.push({
+            key: childsnapshot.key,
+            title: childsnapshot.val().title,
+            kindofjob: childsnapshot.val().kindofjob,
+            amount: childsnapshot.val().amount,
+            address: childsnapshot.val().address,
+            salary: childsnapshot.val().salary,
+            form: childsnapshot.val().form,
+            endate: endatestr,
+            description: childsnapshot.val().description
+          });
+        }
         return false;
       });
       this.jobList = jobs;
@@ -59,18 +70,26 @@ export class JobListPage {
     firebase.database().ref('/PostedJobs').on('value', snapshot => {
       let jobs = [];
       snapshot.forEach(childsnapshot => {
-        if (childsnapshot.val().kindofjob == value) {
-          jobs.push({
-            key: childsnapshot.key,
-            title: childsnapshot.val().title,
-            kindofjob: childsnapshot.val().kindofjob,
-            amount: childsnapshot.val().amount,
-            address: childsnapshot.val().address,
-            salary: childsnapshot.val().salary,
-            form: childsnapshot.val().form,
-            endate: childsnapshot.val().endate,
-            description: childsnapshot.val().description
-          });
+        let datenow = new Date().toISOString();
+        if (childsnapshot.val().endate >= datenow) {
+          if (childsnapshot.val().kindofjob == value) {
+            var str = childsnapshot.val().endate;
+            var year = str.slice(0, 4);
+            var month = str.slice(5, 7);
+            var day = str.slice(8, 10);
+            var endatestr = day + "/" + month + "/" + year;
+            jobs.push({
+              key: childsnapshot.key,
+              title: childsnapshot.val().title,
+              kindofjob: childsnapshot.val().kindofjob,
+              amount: childsnapshot.val().amount,
+              address: childsnapshot.val().address,
+              salary: childsnapshot.val().salary,
+              form: childsnapshot.val().form,
+              endate: endatestr,
+              description: childsnapshot.val().description
+            });
+          }
         }
         return false;
       });
@@ -81,12 +100,12 @@ export class JobListPage {
 
   onSelectChange(selectedvalue) {
     if (selectedvalue == 0) {
-      this.jobList.splice(0);
-      this.loadedJobsList.splice(0);
+      this.jobList.splice(0,this.jobList.length);
+      this.loadedJobsList.splice(0,this.loadedJobsList.length);
       this.LoadAllJob();
     } else {
-      this.jobList.splice(0);
-      this.loadedJobsList.splice(0);
+      this.jobList.splice(0,this.jobList.length);
+      this.loadedJobsList.splice(0,this.loadedJobsList.length);
       this.LoadJobByKind(selectedvalue);
     }
   }

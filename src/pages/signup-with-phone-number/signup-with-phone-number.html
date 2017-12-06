@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Đăng ký với bằng điện thoại</ion-title>
   </ion-navbar>
 
@@ -17,11 +17,11 @@
   <div id="recaptcha-container"></div>
   
     <ion-item>
-      <ion-label stacked>Phone Number</ion-label>
+      <ion-label stacked>Số điện thoại</ion-label>
       <ion-input type="number" [(ngModel)]="phoneNumber"></ion-input>
     </ion-item>
     
-    <button ion-button id="sign-in-button" (click)="signIn(phoneNumber)">
-      Sign In
+    <button ion-button block id="sign-in-button" (click)="signIn(phoneNumber)">
+      Nhập
     </button>
 </ion-content>

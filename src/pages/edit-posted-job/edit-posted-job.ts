@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, NavParams } from 'ionic-angular';
 import { NativeGeocoder, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import firebase from 'firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -7,25 +7,22 @@ import { ElementRef, HostListener, Directive } from '@angular/core';
 import { DateValidatorProvider } from '../../providers/date-validator/date-validator';
 
 @Component({
-  selector: 'page-post-jobs',
-  templateUrl: 'post-jobs.html',
+  selector: 'page-edit-posted-job',
+  templateUrl: 'edit-posted-job.html',
 })
-@Directive({
-  selector: 'ion-textarea[autosize]'
-})
-
-export class PostJobsPage {
+export class EditPostedJobPage {
 
 
-  jobs = [];
+  postedJob = [];
+  jobs=[];
   postJobForm: FormGroup;
   m: any;
-
+  key:any;
   @HostListener('input', ['$event.target'])
   onInput(textArea: HTMLTextAreaElement): void {
     this.adjust();
   }
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public formBuilder: FormBuilder, private nativeGeocoder: NativeGeocoder, public element: ElementRef) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public formBuilder: FormBuilder, private nativeGeocoder: NativeGeocoder, public element: ElementRef, public navParams: NavParams) {
     this.postJobForm = formBuilder.group({
       title: ['', Validators.compose([Validators.required])],
       kindofjob: ['', Validators.compose([Validators.required])],
@@ -53,6 +50,25 @@ export class PostJobsPage {
   }
 
   ionViewDidLoad() {
+    firebase.database().ref('/PostedJobs').once('value', (snapshot) => {
+      snapshot.forEach((childsnapshot) => {
+        if(this.key==childsnapshot.key){
+         
+          this.postJobForm.value.title = childsnapshot.val().title,
+          this.postJobForm.value.kindofjob= childsnapshot.val().kindofjob,
+          this.postJobForm.value.amount= childsnapshot.val().amount,
+          this.postJobForm.value.address= childsnapshot.val().address,
+          this.postJobForm.value.salary= childsnapshot.val().salary,
+          this.postJobForm.value.form= childsnapshot.val().form,
+          this.postJobForm.value.endate= childsnapshot.val().endate,
+          this.postJobForm.value.description= childsnapshot.val().description,
+          this.postJobForm.value.requirement= childsnapshot.val().requirement
+  
+        }
+        return false;
+      });
+    });
+
     firebase.database().ref('/Jobs').once('value', (snapshot) => {
       snapshot.forEach((childsnapshot) => {
         this.jobs.push(childsnapshot.val().name);
@@ -61,10 +77,11 @@ export class PostJobsPage {
     });
   }
 
+
   Post() {
 
     let succedAlert = this.alertCtrl.create({
-      message: 'Đăng thành công!',
+      message: 'Cập nhật thành công!',
       buttons: ['Ok']
     });
     if (!this.postJobForm.valid) {
@@ -89,16 +106,12 @@ export class PostJobsPage {
             lng: coordinates.longitude
           };
 
-          firebase.database().ref('/PostedJobs').push(job).then(() => {
+          firebase.database().ref('/PostedJobs').child(this.key).update(job).then(() => {
             succedAlert.present();
-            this.postJobForm.reset();
+            this.navCtrl.pop();
           });
         })
         .catch((error: any) => console.log(error));
     }
   }
-
-
-
-
 }

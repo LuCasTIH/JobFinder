@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { PostJobsPage } from '../post-jobs/post-jobs';
 import { JobListPage } from '../job-list/job-list';
+import { HistoryPage } from '../history/history';
 // import { AuthProvider } from '../../providers/auth';
-import { UserProfilePage } from '../user-profile/user-profile';
 
 @Component({
   selector: 'page-tabs',
@@ -10,9 +10,9 @@ import { UserProfilePage } from '../user-profile/user-profile';
 })
 export class TabsPage {
 
-  tab1 = PostJobsPage;
-  tab2 = JobListPage;
-  tab3 = UserProfilePage;  
+  tab1 = JobListPage;
+  tab2 = PostJobsPage;
+  tab3 = HistoryPage;  
   constructor() {}
 
 }
