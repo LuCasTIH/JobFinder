@@ -3,7 +3,7 @@ import { NavController, AlertController, NavParams } from 'ionic-angular';
 import { NativeGeocoder, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import firebase from 'firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ElementRef, HostListener, Directive } from '@angular/core';
+
 import { DateValidatorProvider } from '../../providers/date-validator/date-validator';
 
 @Component({
@@ -13,16 +13,23 @@ import { DateValidatorProvider } from '../../providers/date-validator/date-valid
 export class EditPostedJobPage {
 
 
-  postedJob = [];
-  jobs=[];
+  postedJob = {
+    title:'',
+    kindofjob:'',
+    amount:'',
+    address:'',
+    salary:'',
+    form:'',
+    endate:'',
+    description:'',
+    requirement:''
+  };
+  jobs = [];
   postJobForm: FormGroup;
   m: any;
-  key:any;
-  @HostListener('input', ['$event.target'])
-  onInput(textArea: HTMLTextAreaElement): void {
-    this.adjust();
-  }
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public formBuilder: FormBuilder, private nativeGeocoder: NativeGeocoder, public element: ElementRef, public navParams: NavParams) {
+  key: any;
+
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public formBuilder: FormBuilder, private nativeGeocoder: NativeGeocoder, public navParams: NavParams) {
     this.postJobForm = formBuilder.group({
       title: ['', Validators.compose([Validators.required])],
       kindofjob: ['', Validators.compose([Validators.required])],
@@ -35,41 +42,27 @@ export class EditPostedJobPage {
       requirement: ['', Validators.compose([Validators.required])]
     });
     this.m = new Date().toISOString();
+    this.key= this.navParams.get('param');
 
   }
 
-  ngOnInit(): void {
-    setTimeout(() => this.adjust(), 1);
-  }
-
-  adjust(): void {
-    let textArea = this.element.nativeElement.getElementsByTagName('textarea')[0];
-    textArea.style.overflow = 'hidden';
-    textArea.style.height = 'auto';
-    textArea.style.height = textArea.scrollHeight + "px";
-  }
 
   ionViewDidLoad() {
-    firebase.database().ref('/PostedJobs').once('value', (snapshot) => {
-      snapshot.forEach((childsnapshot) => {
-        if(this.key==childsnapshot.key){
-         
-          this.postJobForm.value.title = childsnapshot.val().title,
-          this.postJobForm.value.kindofjob= childsnapshot.val().kindofjob,
-          this.postJobForm.value.amount= childsnapshot.val().amount,
-          this.postJobForm.value.address= childsnapshot.val().address,
-          this.postJobForm.value.salary= childsnapshot.val().salary,
-          this.postJobForm.value.form= childsnapshot.val().form,
-          this.postJobForm.value.endate= childsnapshot.val().endate,
-          this.postJobForm.value.description= childsnapshot.val().description,
-          this.postJobForm.value.requirement= childsnapshot.val().requirement
-  
-        }
+    firebase.database().ref('/PostedJobs').child(this.key).on('value', (snapshot) => {
+            this.postedJob.title = snapshot.val().title,
+            this.postedJob.kindofjob = snapshot.val().kindofjob,
+            this.postedJob.amount = snapshot.val().amount,
+            this.postedJob.address = snapshot.val().address,
+            this.postedJob.salary = snapshot.val().salary,
+            this.postedJob.form = snapshot.val().form,
+            this.postedJob.endate = snapshot.val().endate,
+            this.postedJob.description = snapshot.val().description,
+            this.postedJob.requirement = snapshot.val().requirement
         return false;
-      });
+ 
     });
 
-    firebase.database().ref('/Jobs').once('value', (snapshot) => {
+    firebase.database().ref('/Jobs').on('value', (snapshot) => {
       snapshot.forEach((childsnapshot) => {
         this.jobs.push(childsnapshot.val().name);
         return false;
@@ -78,7 +71,7 @@ export class EditPostedJobPage {
   }
 
 
-  Post() {
+  Update() {
 
     let succedAlert = this.alertCtrl.create({
       message: 'Cập nhật thành công!',

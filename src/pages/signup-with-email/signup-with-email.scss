@@ -1,3 +1,14 @@
 page-signup-with-email {
-
+    p {
+        font-size: 0.8em;
+        color: #FF6153;
+      }
+    
+      .invalid {
+        border-bottom: 1px solid #FF6153;
+      }
+    
+      .error-message .item-inner {
+        border-bottom: 2px solid #FF6153 !important;
+      }
 }

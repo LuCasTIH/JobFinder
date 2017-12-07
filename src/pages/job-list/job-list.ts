@@ -11,12 +11,16 @@ import { LoginPage } from '../login/login';
   templateUrl: 'job-list.html',
 })
 export class JobListPage {
-
-  public jobList = [];
-  public loadedJobsList = [];
+  p: any;
+  jobList = [];
+  loadedJobsList = [];
   kindOfJob = [];
+  kindofjob:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider) {
-
+    this.p = this.navParams.get('param');
+    if (this.p) {
+      this.kindofjob= this.p;
+    }
   }
 
   logOut() {
@@ -100,12 +104,12 @@ export class JobListPage {
 
   onSelectChange(selectedvalue) {
     if (selectedvalue == 0) {
-      this.jobList.splice(0,this.jobList.length);
-      this.loadedJobsList.splice(0,this.loadedJobsList.length);
+      this.jobList.splice(0, this.jobList.length);
+      this.loadedJobsList.splice(0, this.loadedJobsList.length);
       this.LoadAllJob();
     } else {
-      this.jobList.splice(0,this.jobList.length);
-      this.loadedJobsList.splice(0,this.loadedJobsList.length);
+      this.jobList.splice(0, this.jobList.length);
+      this.loadedJobsList.splice(0, this.loadedJobsList.length);
       this.LoadJobByKind(selectedvalue);
     }
   }

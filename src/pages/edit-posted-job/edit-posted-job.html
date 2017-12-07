@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>EditPostedJob</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Chỉnh sửa công việc</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,43 +18,43 @@
     
         <ion-item>
           <ion-label stacked> Tiêu đề</ion-label>
-          <ion-input type="text" formControlName="title">
+          <ion-input type="text" formControlName="title" [(ngModel)]="postedJob.title">
             [class.invalid]="!postJobForm.controls.title.dirty">
           </ion-input>
         </ion-item>
     
         <ion-item>
           <ion-label floating>Công việc</ion-label>
-          <ion-select formControlName="kindofjob">
+          <ion-select formControlName="kindofjob" [(ngModel)]="postedJob.kindofjob">
             <ion-option *ngFor="let job of jobs" value="{{ job }}">{{ job }}</ion-option>
             [class.invalid]="!postJobForm.controls.kindofjob.dirty">
           </ion-select>
         </ion-item>
-    
-        <ion-item>
-          <ion-label stacked> Yêu cầu </ion-label>
-          <ion-textarea formControlName="requirement" autosize>
-            [class.invalid]="!postJobForm.controls.requirement.dirty">
-          </ion-textarea>
-        </ion-item>
-    
+
         <ion-item>
           <ion-label stacked>Địa chỉ nhận CV / Địa chỉ nơi làm </ion-label>
-          <ion-input type="text" formControlName="address">
+          <ion-input type="text" formControlName="address" [(ngModel)]="postedJob.address">
             [class.invalid]="!postJobForm.controls.address.dirty">
           </ion-input>
         </ion-item>
     
         <ion-item>
+          <ion-label stacked> Yêu cầu </ion-label>
+          <ion-textarea fz-elastic formControlName="requirement" [(ngModel)]="postedJob.requirement">
+            [class.invalid]="!postJobForm.controls.requirement.dirty">
+          </ion-textarea>
+        </ion-item>
+    
+        <ion-item>
           <ion-label stacked> Mô tả </ion-label>
-          <ion-textarea formControlName="description" autosize2>
+          <ion-textarea fz-elastic formControlName="description" [(ngModel)]="postedJob.description">
             [class.invalid]="!postJobForm.controls.description.dirty">
           </ion-textarea>
         </ion-item>
     
         <ion-item>
           <ion-label stacked> Số lượng </ion-label>
-          <ion-input type="number" formControlName="amount">
+          <ion-input type="number" formControlName="amount" [(ngModel)]="postedJob.amount">
             [class.invalid]="!postJobForm.controls.amount.dirty">
           </ion-input>
         </ion-item>
@@ -65,7 +65,7 @@
               <ion-item>
                 <ion-label stacked>Lương </ion-label>
     
-                <ion-input type="number" formControlName="salary">
+                <ion-input type="number" formControlName="salary" [(ngModel)]="postedJob.salary">
                   [class.invalid]="!postJobForm.controls.salary.dirty">
                 </ion-input>
               </ion-item>
@@ -74,7 +74,7 @@
             <ion-col>
               <ion-item>
                 <ion-label stacked>Hình thức</ion-label>
-                <ion-select formControlName="form">
+                <ion-select formControlName="form" [(ngModel)]="postedJob.form">
                   <ion-option value="/giờ">/giờ</ion-option>
                   <ion-option value="/ngày">/ngày</ion-option>
                   [class.invalid]="!postJobForm.controls.form.dirty">
@@ -86,7 +86,7 @@
     
         <ion-item>
           <ion-label floating>Ngày kết thúc tuyển người</ion-label>
-          <ion-datetime displayFormat="MM/DD/YYYY" formControlName="endate">
+          <ion-datetime displayFormat="MM/DD/YYYY" formControlName="endate" [(ngModel)]="postedJob.endate">
             [class.invalid]="!postJobForm.controls.endate.valid && postJobForm.controls.endate.dirty">
           </ion-datetime>
         </ion-item>

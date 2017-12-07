@@ -6,13 +6,66 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>JobDetails</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Chi tiết công việc</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <h1><strong>{{postedJob.title}}</strong></h1>
+  <a href="#" (click)="GoToUserProfile(user.uid)">{{user.name}}</a>
+  <div id="padding">
+    <ion-grid class="padding-top">
+
+      <ion-row>
+        <ion-col col-1>
+          <ion-icon name="md-pricetag"></ion-icon>
+        </ion-col>
+        <ion-col>
+          <a href="#" (click)="GoToJobList(postedJob.kindofjob)">{{postedJob.kindofjob}}</a>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-1>
+          <ion-icon name="md-home"></ion-icon>
+        </ion-col>
+        <ion-col>
+          <h6>{{postedJob.address}}</h6>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-1>
+          <ion-icon name="call"></ion-icon>
+        </ion-col>
+        <ion-col>
+          <h6>{{user.phonenumber}}</h6>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-1>
+          <ion-icon name="logo-usd"></ion-icon>
+        </ion-col>
+        <ion-col>
+          <h6>{{postedJob.amount}}{{postedJob.form}}</h6>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+
+  <div>
+    <p><strong>Yêu cầu:</strong></p>
+    <pre>{{postedJob.requirement}}</pre>
+  </div>
+
+  <div>
+    <p><strong>Công việc:</strong></p>
+    <pre>{{postedJob.description}}</pre>
+  </div>
 
 </ion-content>

@@ -42,7 +42,7 @@ export class PostJobsPage {
   }
 
   ngOnInit(): void {
-    setTimeout(() => this.adjust(), 1);
+    setTimeout(() => this.adjust(), 2);
   }
 
   adjust(): void {

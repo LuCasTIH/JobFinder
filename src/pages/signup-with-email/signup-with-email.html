@@ -5,35 +5,49 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  
-    <ion-navbar color="primary">
-      <ion-title>Đăng ký tài khoản bằng email</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
-  
-  
-  <ion-content padding>
-  
-    <form [formGroup]="signupForm" (submit)="Signup()" novalidate>
-  
-      <ion-item>
-        <ion-label stacked>Email</ion-label>
-        <ion-input formControlName="email" type="email" placeholder="Email của bạn" [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.dirty"></ion-input>
-      </ion-item>
-      <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid  && signupForm.controls.email.dirty">
-        <p style="color:red">Vui lòng nhập email hợp lệ</p>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label stacked>Mật khẩu</ion-label>
-        <ion-input formControlName="password" type="password" placeholder="Mật khẩu của bạn" [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty"></ion-input>
-      </ion-item>
-      <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid  && signupForm.controls.password.dirty">
-        <p style="color:red">Mật khẩu cần ít nhất 6 kí tự.</p>
-      </ion-item>
-  
-      <button ion-button block type="submit">Tạo tài khoản</button>
-    </form>
-  
-  </ion-content>
+
+  <ion-navbar color="primary">
+    <ion-title>Đăng ký tài khoản bằng email</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="signupForm" (submit)="Signup()" novalidate>
+
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Email của bạn" [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid  && signupForm.controls.email.dirty">
+      <p style="color:red">Vui lòng nhập email hợp lệ</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Mật khẩu</ion-label>
+      <ion-input formControlName="password" type="password" placeholder="Mật khẩu của bạn" [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid  && signupForm.controls.password.dirty">
+      <p style="color:red">Mật khẩu cần ít nhất 6 kí tự.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked> Tên hiển thị</ion-label>
+      <ion-input type="text" formControlName="name" placeholder="Tên của bạn hoặc tên công ty, ...">
+        [class.invalid]="!signupForm.controls.name.dirty">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked> Số điện thoại </ion-label>
+      <ion-input type="text" formControlName="phonenumber" placeholder="Số điện thoại liên lạc">
+        [class.invalid]="!signupForm.controls.phonenumber.dirty">
+      </ion-input>
+    </ion-item>
+
+    <button ion-button block type="submit">Tạo tài khoản</button>
+  </form>
+
+</ion-content>
