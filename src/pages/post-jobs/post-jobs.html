@@ -32,7 +32,7 @@
 
     <ion-item>
       <ion-label stacked> Yêu cầu </ion-label>
-      <ion-textarea formControlName="requirement" autosize>
+      <ion-textarea formControlName="requirement" fz-elastic>
         [class.invalid]="!postJobForm.controls.requirement.dirty">
       </ion-textarea>
     </ion-item>
@@ -46,7 +46,7 @@
 
     <ion-item>
       <ion-label stacked> Mô tả </ion-label>
-      <ion-textarea formControlName="description" autosize>
+      <ion-textarea formControlName="description" fz-elastic>
         [class.invalid]="!postJobForm.controls.description.dirty">
       </ion-textarea>
     </ion-item>

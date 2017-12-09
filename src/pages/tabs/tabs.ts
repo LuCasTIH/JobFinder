@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PostJobsPage } from '../post-jobs/post-jobs';
 import { JobListPage } from '../job-list/job-list';
-import { HistoryPage } from '../history/history';
+// import { HistoryPage } from '../history/history';
 import { UserProfilePage } from '../user-profile/user-profile';
 // import { AuthProvider } from '../../providers/auth';
 
@@ -13,7 +13,7 @@ export class TabsPage {
 
   tab1 = JobListPage;
   tab2 = PostJobsPage;
-  tab3 = HistoryPage;  
+  // tab3 = HistoryPage;  
   tab4 = UserProfilePage;
   constructor() {}
 

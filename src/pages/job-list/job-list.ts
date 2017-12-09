@@ -23,13 +23,6 @@ export class JobListPage {
     }
   }
 
-  logOut() {
-    this.auth.logoutUser();
-    firebase.auth().signOut();
-    this.navCtrl.setRoot(LoginPage);
-    console.log("thoat");
-  }
-
   ionViewDidLoad() {
     firebase.database().ref('/Jobs').once('value', (snapshot) => {
       snapshot.forEach((childsnapshot) => {

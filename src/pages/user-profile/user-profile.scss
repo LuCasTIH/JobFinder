@@ -1,3 +1,23 @@
 page-user-profile {
+    img {
+        border-radius: 50%;
+        width: 110px;
+        height: 110px;
+    }
+    .userInfo{
+        border: 4px;
+        height: 220px;
+    }
+    
+    #bio{
+        padding-top:10px;
+        padding-left: 20px;
+    }
 
+    #aha{
+        background-color: lightgray;
+        height: 20px;
+    }
+
+    
 }

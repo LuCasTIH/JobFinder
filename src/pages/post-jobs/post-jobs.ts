@@ -3,29 +3,21 @@ import { NavController, AlertController } from 'ionic-angular';
 import { NativeGeocoder, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import firebase from 'firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ElementRef, HostListener, Directive } from '@angular/core';
 import { DateValidatorProvider } from '../../providers/date-validator/date-validator';
 
 @Component({
   selector: 'page-post-jobs',
   templateUrl: 'post-jobs.html',
 })
-@Directive({
-  selector: 'ion-textarea[autosize]'
-})
+
 
 export class PostJobsPage {
-
-
+  uid: string;
   jobs = [];
   postJobForm: FormGroup;
   m: any;
 
-  @HostListener('input', ['$event.target'])
-  onInput(textArea: HTMLTextAreaElement): void {
-    this.adjust();
-  }
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public formBuilder: FormBuilder, private nativeGeocoder: NativeGeocoder, public element: ElementRef) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public formBuilder: FormBuilder, private nativeGeocoder: NativeGeocoder) {
     this.postJobForm = formBuilder.group({
       title: ['', Validators.compose([Validators.required])],
       kindofjob: ['', Validators.compose([Validators.required])],
@@ -38,18 +30,7 @@ export class PostJobsPage {
       requirement: ['', Validators.compose([Validators.required])]
     });
     this.m = new Date().toISOString();
-
-  }
-
-  ngOnInit(): void {
-    setTimeout(() => this.adjust(), 2);
-  }
-
-  adjust(): void {
-    let textArea = this.element.nativeElement.getElementsByTagName('textarea')[0];
-    textArea.style.overflow = 'hidden';
-    textArea.style.height = 'auto';
-    textArea.style.height = textArea.scrollHeight + "px";
+    this.uid = firebase.auth().currentUser.uid;
   }
 
   ionViewDidLoad() {
@@ -86,7 +67,8 @@ export class PostJobsPage {
             description: this.postJobForm.value.description,
             requirement: this.postJobForm.value.requirement,
             lat: coordinates.latitude,
-            lng: coordinates.longitude
+            lng: coordinates.longitude,
+            useruid: this.uid
           };
 
           firebase.database().ref('/PostedJobs').push(job).then(() => {

@@ -15,7 +15,6 @@
 
 <ion-content padding>
   <form [formGroup]="postJobForm" (submit)="Update()" novalidate>
-    
         <ion-item>
           <ion-label stacked> Tiêu đề</ion-label>
           <ion-input type="text" formControlName="title" [(ngModel)]="postedJob.title">

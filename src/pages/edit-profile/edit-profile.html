@@ -7,12 +7,34 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>EditProfile</ion-title>
+    <ion-title>Chỉnh sửa thông tin</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-item>
+    <ion-label stacked> Tên hiển thị</ion-label>
+    <ion-input type="text" [(ngModel)]="username">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked> Giới thiệu</ion-label>
+    <ion-textarea type="text" [(ngModel)]="userbio" fz-elastic>
+    </ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked> Số điện thoại</ion-label>
+    <ion-input type="text" [(ngModel)]="userphonenumber">
+    </ion-input>
+  </ion-item>
+
+  <button ion-button block (click)="Update(username,userbio,userphonenumber)">
+     Cập nhật
+    </button>
+
 
 </ion-content>

@@ -26,8 +26,10 @@ import { JobListPage } from '../pages/job-list/job-list';
 import { MapPage } from '../pages/map/map';
 import { HistoryPage } from '../pages/history/history';
 import { EditPostedJobPage } from '../pages/edit-posted-job/edit-posted-job';
+import { OtherUserProfilePage } from '../pages/other-user-profile/other-user-profile';
 
-export const config ={
+
+export const config = {
   apiKey: "AIzaSyATI7EYKRY3fQYCKiX38x7kZqi6T6F3Yyg",
   authDomain: "jobfinder-36e68.firebaseapp.com",
   databaseURL: "https://jobfinder-36e68.firebaseio.com",
@@ -50,7 +52,9 @@ export const config ={
     UserProfilePage,
     EditProfilePage,
     HistoryPage,
-    EditPostedJobPage
+    EditPostedJobPage,
+    OtherUserProfilePage
+
   ],
   imports: [
     BrowserModule,
@@ -74,8 +78,10 @@ export const config ={
     UserProfilePage,
     EditProfilePage,
     HistoryPage,
-    EditPostedJobPage
-    
+    EditPostedJobPage,
+    OtherUserProfilePage
+
+
   ],
   providers: [
     StatusBar,

@@ -15,8 +15,8 @@
 
 <ion-content padding>
   <!-- <button ion-button *ngIf="showEditBtn" (click)="Change()">Edit</button>
-  <button ion-button *ngIf="showFollowBtn" [style.backgroundColor]="btnColor" (click)="Change()">Follow</button>
-  <img src="https://png.icons8.com/?id=1709&size=280" alt=""> -->
+      <button ion-button *ngIf="showFollowBtn" [style.backgroundColor]="btnColor" (click)="Change()">Follow</button>
+      <img src="https://png.icons8.com/?id=1709&size=280" alt=""> -->
 
   <div class="userInfo">
     <ion-grid>
@@ -38,23 +38,23 @@
             </ion-col>
 
             <!-- <ion-col>
-              {{followeramount}}
-              <br> người theo dõi
-            </ion-col> -->
+                  {{followeramount}}
+                  <br> người theo dõi
+                </ion-col> -->
           </ion-row>
 
           <ion-row>
             <ion-col>
               <button ion-button *ngIf="showEditBtn" full (click)="GoToChangeProfile()">Sửa thông tin</button>
               <!-- <button ion-button *ngIf="showFollowBtn" full [style.backgroundColor]="btnColor" (click)="Follow()">Follow</button>
-              <button ion-button *ngIf="isFollow" full [style.backgroundColor]="btnColor" (click)="UnFollow()">Follow</button> -->
+                  <button ion-button *ngIf="isFollow" full [style.backgroundColor]="btnColor" (click)="UnFollow()">Follow</button> -->
             </ion-col>
           </ion-row>
 
         </ion-col>
       </ion-row>
       <ion-row>
-          <pre>{{bio}}</pre>
+        <pre>{{bio}}</pre>
       </ion-row>
     </ion-grid>
   </div>
@@ -89,34 +89,21 @@
             {{userphonenumber}}
           </ion-col>
         </ion-row>
-
-        <ion-row>
-          <button ion-button (click)="logOut()">
-            Đăng xuất
-          </button>
-        </ion-row>
       </ion-grid>
 
     </ion-list>
 
 
     <ion-list *ngSwitchCase="'postedJob'">
-      <ion-item-sliding *ngFor="let job of jobList">
+      <ion-item *ngFor="let job of jobList">
         <ion-item>
           <h2>
             <strong>{{ job.title }}</strong>
           </h2>
           <h4 style="color:grey">Ngày hết hạn: {{job.endate}}</h4>
         </ion-item>
-        <ion-item-options side="right">
-          <button ion-button color="secondary" (click)="GoToEditPostedJob(job.key)">
-            <ion-icon name="md-create"> Sửa </ion-icon>
-          </button>
-          <button ion-button color="danger" (click)="DeleteJob(job.key)">
-            <ion-icon name="md-trash"> Xóa </ion-icon>
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
+        \
+      </ion-item>
     </ion-list>
 
 
