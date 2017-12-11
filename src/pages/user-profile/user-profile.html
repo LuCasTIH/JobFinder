@@ -18,11 +18,11 @@
   <button ion-button *ngIf="showFollowBtn" [style.backgroundColor]="btnColor" (click)="Change()">Follow</button>
   <img src="https://png.icons8.com/?id=1709&size=280" alt=""> -->
 
-  <div class="userInfo">
+  <div class="userInfoDiv">
     <ion-grid>
       <ion-row text-center>
 
-        <ion-col col-5>
+        <ion-col>
           <ion-avatar item-left>
             <img src="https://i.redditmedia.com/ogq1GdfVw4UWH_gsDMgvLLh6ywWPF3iVRX7Pz3yt27E.jpg?w=1024&s=f0881eaa44b4d1658baee9921d99c555"
               onerror="this.src='https://png.icons8.com/?id=1709&size=280'">
@@ -37,24 +37,22 @@
               <br> bài viết
             </ion-col>
 
-            <!-- <ion-col>
-              {{followeramount}}
-              <br> người theo dõi
-            </ion-col> -->
+            <ion-col>
+                  {{followeramount}}
+                  <br> người theo dõi
+                </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col>
-              <button ion-button *ngIf="showEditBtn" full (click)="GoToChangeProfile()">Sửa thông tin</button>
-              <!-- <button ion-button *ngIf="showFollowBtn" full [style.backgroundColor]="btnColor" (click)="Follow()">Follow</button>
-              <button ion-button *ngIf="isFollow" full [style.backgroundColor]="btnColor" (click)="UnFollow()">Follow</button> -->
+              <button ion-button block (click)="GoToChangeProfile()">Sửa thông tin</button>
             </ion-col>
           </ion-row>
 
         </ion-col>
       </ion-row>
       <ion-row>
-          <pre>{{bio}}</pre>
+        <pre>{{bio}}</pre>
       </ion-row>
     </ion-grid>
   </div>

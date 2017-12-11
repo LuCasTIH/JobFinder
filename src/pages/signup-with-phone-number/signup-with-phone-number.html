@@ -15,13 +15,15 @@
 
 <ion-content padding>
   <div id="recaptcha-container"></div>
-  
+
+  <div id="phonenumber-auth">
     <ion-item>
       <ion-label stacked>Số điện thoại</ion-label>
       <ion-input type="number" [(ngModel)]="phoneNumber"></ion-input>
     </ion-item>
-    
+    <div id="space"></div>
     <button ion-button block id="sign-in-button" (click)="signIn(phoneNumber)">
       Nhập
     </button>
+  </div>
 </ion-content>

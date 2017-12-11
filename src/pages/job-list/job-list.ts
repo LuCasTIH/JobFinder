@@ -16,11 +16,13 @@ export class JobListPage {
   loadedJobsList = [];
   kindOfJob = [];
   kindofjob:any;
+  uid:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider) {
     this.p = this.navParams.get('param');
     if (this.p) {
       this.kindofjob= this.p;
     }
+    this.uid= firebase.auth().currentUser.uid;
   }
 
   ionViewDidLoad() {
@@ -37,6 +39,7 @@ export class JobListPage {
     firebase.database().ref('/PostedJobs').on('value', snapshot => {
       let jobs = [];
       snapshot.forEach(childsnapshot => {
+        if(this.uid!= childsnapshot.val().uid){
         let datenow = new Date().toISOString();
         if (childsnapshot.val().endate >= datenow) {
           var str = childsnapshot.val().endate;
@@ -57,6 +60,7 @@ export class JobListPage {
           });
         }
         return false;
+      }
       });
       this.jobList = jobs;
       this.loadedJobsList = jobs;
@@ -68,6 +72,7 @@ export class JobListPage {
       let jobs = [];
       snapshot.forEach(childsnapshot => {
         let datenow = new Date().toISOString();
+        if(this.uid!= childsnapshot.val().uid){
         if (childsnapshot.val().endate >= datenow) {
           if (childsnapshot.val().kindofjob == value) {
             var str = childsnapshot.val().endate;
@@ -89,6 +94,7 @@ export class JobListPage {
           }
         }
         return false;
+      }
       });
       this.jobList = jobs;
       this.loadedJobsList = jobs;

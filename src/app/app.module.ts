@@ -27,6 +27,7 @@ import { MapPage } from '../pages/map/map';
 import { HistoryPage } from '../pages/history/history';
 import { EditPostedJobPage } from '../pages/edit-posted-job/edit-posted-job';
 import { OtherUserProfilePage } from '../pages/other-user-profile/other-user-profile';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 
 
 export const config = {
@@ -53,7 +54,8 @@ export const config = {
     EditProfilePage,
     HistoryPage,
     EditPostedJobPage,
-    OtherUserProfilePage
+    OtherUserProfilePage,
+    ResetPasswordPage
 
   ],
   imports: [
@@ -79,8 +81,8 @@ export const config = {
     EditProfilePage,
     HistoryPage,
     EditPostedJobPage,
-    OtherUserProfilePage
-
+    OtherUserProfilePage,
+    ResetPasswordPage
 
   ],
   providers: [
