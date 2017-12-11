@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import { MapPage } from '../map/map';
 import { JobDetailsPage } from '../job-details/job-details';
 import { AuthProvider } from '../../providers/auth';
-import { LoginPage } from '../login/login';
+
 
 @Component({
   selector: 'page-job-list',

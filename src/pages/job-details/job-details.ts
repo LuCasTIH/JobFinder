@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
-import { UserProfilePage } from '../user-profile/user-profile';
 import { JobListPage } from '../job-list/job-list';
 import { OtherUserProfilePage } from '../other-user-profile/other-user-profile';
 

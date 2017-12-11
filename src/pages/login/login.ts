@@ -13,6 +13,7 @@ import { EmailValidator } from '../../providers/email';
 import { TabsPage } from '../tabs/tabs';
 import { SignupWithEmailPage } from '../signup-with-email/signup-with-email';
 import { SignupWithPhoneNumberPage } from '../signup-with-phone-number/signup-with-phone-number';
+import { ResetPasswordPage } from '../reset-password/reset-password';
 
 @Component({
   selector: 'page-login',
@@ -38,6 +39,10 @@ export class LoginPage {
 
   GoToSignup(){
     this.navCtrl.push(SignupWithEmailPage);
+  }
+
+  GoToResetPassword(){
+    this.navCtrl.push(ResetPasswordPage);
   }
 
   Login() {
